@@ -16,49 +16,37 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 blog-header">
-        <h1 class="blog-title">{{ site.name }}</h1>
-        <p class="lead blog-description">{{ site.desc }}</p>
+      <div class="col-md-4 header">
+        <h1 class="header-title">{{ site.name }}</h1>
+        <p class="header-desc">{{ site.desc }}</p>
       </div>
-      <div class="col-md-3 col-md-offset-1 blog-header">
-        <img class="img-circle" src="{{ site.url }}/assets/images/logo.PNG" width="140" height="140">
+      <div class="col-md-4 col-sm-offset-4">
+        <img class="img-circle logo" src="{{ site.url }}/assets/images/logo.PNG" width="120" height="120">
       </div>
     </div>
     <div class="row">
-      <div class="col-md-8 blog-main">
-
+      <div class="col-md-8 main-content">
         {{ content }}
-
-        <nav>
-          <ul class="pager">
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
-        </nav>
-
       </div>
 
-      <div class="col-md-3 col-md-offset-1 blog-sidebar">
-        <div class="sidebar-module sidebar-module-inset">
-          <h4>About</h4>
-
-          <p>about RigoFunc here</p>
+      <div class="col-md-3 col-md-offset-1">
+        <div class="sidebar sidebar-inset">
+          <p>about RigoFunc here.</p>
         </div>
-        <div class="sidebar-module">
+        <div class="sidebar">
           <h4>navigation</h4>
           <ol class="list-unstyled">
             {% for i in site.urls %}
-            <li><a class="about" href="{{ i.url }}">{{ i.text }}</a>
-              <li>
-                {% endfor %}
+              <li><a class="about" href="{{ i.url }}">{{ i.text }}</a></li>
+            {% endfor %}
           </ol>
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <p>&copy; {{ site.time | date: '%Y' }} RigoFunc (xyting). All rights reserved.</p>
+    </footer>
   </div>
-  <footer class="blog-footer">
-    <p>&copy; {{ site.time | date: '%Y' }} RigoFunc (xyting). All rights reserved.</p>
-  </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="{{ site.url }}/assets/js/bootstrap.min.js"></script>
 </body>
