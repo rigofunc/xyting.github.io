@@ -7,11 +7,11 @@ feature, to investigate the details will be better before to configure it on doc
 
 ## Run redis master
 We use the docker hub official redis image to build the master/standalone redis.
-	sudo docker run --name="docker_redis_master" --restart=always -P -d redis
+	`sudo docker run --name="docker_redis_master" --restart=always -P -d redis`
 
 ## Building the redis slave image
 We base on official latest redis image to build the redis salve image, so, first we need to create a new Dockerfile
-	vim /home/rigofunc/doc/Dockerfile
+	`vim /home/rigofunc/doc/Dockerfile`
 The Dockerfile as following:
 	FROM redis:latest
 	
