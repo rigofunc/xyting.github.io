@@ -44,10 +44,22 @@
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <strong>xyting's blog</strong> <em>(RigoFunc)</em>
+            About
           </div>
           <div class="panel-body">
             {{ site.about }}
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Elsewhere
+          </div>
+          <div class="panel-body">
+            <ul class="nav nav-pills nav-justified">
+              {% for i in site.urls %}
+                <li role="presentation"><a href="{{ i.url }}">{{ i.text }}</a></li> 
+              {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
