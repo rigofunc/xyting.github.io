@@ -58,3 +58,6 @@ To verify the new image, typing *sudo docker images*, if succeed, will as follow
 Because we had have the redis slave redis image, so we can use docker --link to link the redis master
 
 	sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -P -d redis-slave
+	
+## Resource
+The Dockerfile and the shell script can be download on my [github repo](https://github.com/xyting/docker-redis-master-slave)
