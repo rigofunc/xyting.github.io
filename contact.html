@@ -1,0 +1,11 @@
+---
+layout: default 
+---
+<div class="jumbotron">
+  <h1>contacts</h1>
+  <ol class="list-unstyled">
+    {% for i in site.urls %}
+    <li><a class="about" href="{{ i.url }}">{{ i.text }}</a></li>
+    {% endfor %}
+  </ol>
+</div>
