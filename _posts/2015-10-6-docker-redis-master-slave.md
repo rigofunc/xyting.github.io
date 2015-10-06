@@ -7,47 +7,47 @@ feature, to investigate the details will be better before to configure it on doc
 
 ## Run redis master
 We use the docker hub official redis image to build the master/standalone redis.
-	>sudo docker run --name="docker_redis_master" --restart=always -P -d redis
+	sudo docker run --name="docker_redis_master" --restart=always -P -d redis
 
 ## Building the redis slave image
 We base on official latest redis image to build the redis salve image, so, first we need to create a new Dockerfile
-	>vim /home/rigofunc/doc/Dockerfile
+	vim /home/rigofunc/doc/Dockerfile
 The Dockerfile as following:
-	>FROM redis:latest
+	FROM redis:latest
 	
-	>EXPOSE 6379
+	EXPOSE 6379
 	
-	>VOLUME ["/data"]
+	VOLUME ["/data"]
 	
-	>COPY start-redis-slave.sh /start-redis-slave.sh
+	COPY start-redis-slave.sh /start-redis-slave.sh
 	
-	>RUN chmod +x /start-redis-slave.sh
+	RUN chmod +x /start-redis-slave.sh
 	
-	>ENTRYPOINT ["/start-redis-slave.sh", "--dir", "/data"]	
+	ENTRYPOINT ["/start-redis-slave.sh", "--dir", "/data"]	
 The start-redis-salve.sh file as following:
-	>#!/bin/bash
-	>#
-	>if [ -z "$DOCKER_REDIS_MASTER_PORT_6379_ADDR" ]; then
-	>	echo "DOCKER_REDIS_MASTER_PORT_6379_ADDR not defined. Did you run with -link?";
-	>	exit 7;
-	>fi
-	>
-	># exec allows docker-redis-slave to receive signals for clean shutdown
-	>#
-	>
-	>echo "DOCKER_REDIS_MASTER_PORT_6379_ADDR -> " $DOCKER_REDIS_MASTER_PORT_6379_ADDR
-	>echo "DOCKER_REDIS_MASTER_PORT_6379_PORT -> " $DOCKER_REDIS_MASTER_PORT_6379_PORT
+	#!/bin/bash
+	#
+	if [ -z "$DOCKER_REDIS_MASTER_PORT_6379_ADDR" ]; then
+		echo "DOCKER_REDIS_MASTER_PORT_6379_ADDR not defined. Did you run with -link?";
+		exit 7;
+	fi
+	
+	# exec allows docker-redis-slave to receive signals for clean shutdown
+	#
+	
+	echo "DOCKER_REDIS_MASTER_PORT_6379_ADDR -> " $DOCKER_REDIS_MASTER_PORT_6379_ADDR
+	echo "DOCKER_REDIS_MASTER_PORT_6379_PORT -> " $DOCKER_REDIS_MASTER_PORT_6379_PORT
 
-	>exec /usr/local/bin/redis-server --slaveof $DOCKER_REDIS_MASTER_PORT_6379_ADDR $DOCKER_REDIS_MASTER_PORT_6379_PORT
+	exec /usr/local/bin/redis-server --slaveof $DOCKER_REDIS_MASTER_PORT_6379_ADDR $DOCKER_REDIS_MASTER_PORT_6379_PORT
 Using docker build command to build the Dockerfile
-	>sudo docker build -t redis-slave .
+	sudo docker build -t redis-slave .
 
 ## Verify whether have the image
 To verify the new image, typing *sudo docker images*, if succeed, will as following:
-	>REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-	>redis-slave         latest              d85a8de17772        5 days ago          109.2 MB
-	>redis               latest              2f2578ff984f        3 weeks ago         109.2 MB
+	REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+	redis-slave         latest              d85a8de17772        5 days ago          109.2 MB
+	redis               latest              2f2578ff984f        3 weeks ago         109.2 MB
 
 ## Run the redis slave
 Because we had have the redis slave redis image, so we can use docker --link to link the redis master
-	>sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -P -d redis-slave
+	sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -P -d redis-slave
