@@ -13,6 +13,7 @@ We use the docker hub official redis image to build the master/standalone redis.
 We base on official latest redis image to build the redis salve image, so, first we need to create a new Dockerfile
 	`vim /home/rigofunc/doc/Dockerfile`
 The Dockerfile as following:
+
 	FROM redis:latest
 	
 	EXPOSE 6379
@@ -25,6 +26,7 @@ The Dockerfile as following:
 	
 	ENTRYPOINT ["/start-redis-slave.sh", "--dir", "/data"]	
 The start-redis-salve.sh file as following:
+
 	#!/bin/bash
 	#
 	if [ -z "$DOCKER_REDIS_MASTER_PORT_6379_ADDR" ]; then
@@ -40,14 +42,16 @@ The start-redis-salve.sh file as following:
 
 	exec /usr/local/bin/redis-server --slaveof $DOCKER_REDIS_MASTER_PORT_6379_ADDR $DOCKER_REDIS_MASTER_PORT_6379_PORT
 Using docker build command to build the Dockerfile
-	sudo docker build -t redis-slave .
+	`sudo docker build -t redis-slave .`
 
 ## Verify whether have the image
 To verify the new image, typing *sudo docker images*, if succeed, will as following:
+
 	REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 	redis-slave         latest              d85a8de17772        5 days ago          109.2 MB
 	redis               latest              2f2578ff984f        3 weeks ago         109.2 MB
 
 ## Run the redis slave
 Because we had have the redis slave redis image, so we can use docker --link to link the redis master
+
 	sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -P -d redis-slave
