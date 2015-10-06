@@ -7,11 +7,13 @@ feature, to investigate the details will be better before to configure it on doc
 
 ## Run redis master
 We use the docker hub official redis image to build the master/standalone redis.
-	`sudo docker run --name="docker_redis_master" --restart=always -P -d redis`
+
+	sudo docker run --name="docker_redis_master" --restart=always -P -d redis
 
 ## Building the redis slave image
 We base on official latest redis image to build the redis salve image, so, first we need to create a new Dockerfile
-	`vim /home/rigofunc/doc/Dockerfile`
+
+	vim /home/rigofunc/doc/Dockerfile
 The Dockerfile as following:
 
 	FROM redis:latest
@@ -42,7 +44,8 @@ The start-redis-salve.sh file as following:
 
 	exec /usr/local/bin/redis-server --slaveof $DOCKER_REDIS_MASTER_PORT_6379_ADDR $DOCKER_REDIS_MASTER_PORT_6379_PORT
 Using docker build command to build the Dockerfile
-	`sudo docker build -t redis-slave .`
+
+	sudo docker build -t redis-slave .
 
 ## Verify whether have the image
 To verify the new image, typing *sudo docker images*, if succeed, will as following:
