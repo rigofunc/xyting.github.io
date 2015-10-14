@@ -1,5 +1,6 @@
 ---
 layout: default
+title: redis master slave on docker
 ---
 
 A few days ago, my colleague asked me how to configure [redis](http://redis.io/) master-slave on docker. I tell him redis has a [replication](http://redis.io/topics/replication)
@@ -8,7 +9,7 @@ feature, to investigate the details will be better before to configure it on doc
 ## Run redis master
 We use the docker hub official redis image to build the master/standalone redis.
 
-	sudo docker run --name="docker_redis_master" --restart=always -P -d redis
+	sudo docker run --name="docker_redis_master" --restart=always -p 127.0.0.1:6379:6379 -d redis
 
 ## Building the redis slave image
 We base on official latest redis image to build the redis salve image, so, first we need to create a new Dockerfile
@@ -57,7 +58,7 @@ To verify the new image, typing *sudo docker images*, if succeed, will as follow
 ## Run the redis slave
 Because we had have the redis slave redis image, so we can use docker --link to link the redis master
 
-	sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -P -d redis-slave
+	sudo docker run --name="docker_redis_slave" --restart=always --link=docker_redis_master:docker_redis_master -p127.0.0.1:6380:6379 -d redis-slave
 	
 ## Resource
-The Dockerfile and the shell script can be download on my [github repo](https://github.com/xyting/docker-redis-master-slave)
+The Dockerfile and the shell script can be download from my [github repo](https://github.com/xyting/docker-redis-master-slave)
