@@ -47,9 +47,15 @@
             About
           </div>
           <div class="panel-body">
-            {{ site.about }}
-            
-            {{ site.diff }}
+            <div class="media">
+              <div class="media-left media-middle">
+                <img class="img-circle media-object" src="{{ site.url }}/images/logo.jpg" width="50" height="50">
+              </div>
+              <div class="media-body">
+                <h2 class="media-heading">Who I am</h2>
+                <p>{{ site.about }}</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="panel panel-default">
@@ -59,7 +65,7 @@
           <div class="panel-body">
             <ul class="nav nav-pills nav-justified">
               {% for i in site.urls %}
-                <li role="presentation"><a href="{{ i.url }}">{{ i.text }}</a></li> 
+              <li role="presentation"><a href="{{ i.url }}">{{ i.text }}</a></li>
               {% endfor %}
             </ul>
           </div>
