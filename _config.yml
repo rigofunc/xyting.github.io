@@ -4,7 +4,10 @@ markdown: redcarpet
 highlighter: pygments
 paginate: 5
 github: https://www.github.com/xyting
-about: I'm a programmer, lives in Hangzhou, Zhejiang, China.
+about: I'm a programmer (but I already married, and have a lovely daughter), lives in Hangzhou, Zhejiang, China.
+diff: A man like me, is unique in the world of existence, no matter where you go, there belonging to my stage. 
+      Like desert gold, light can not hide forever! 
+      Especially my messy hair, melancholy eyes, sigh of stubble, handsome face, are deeply addicted whom even I.  I have a wife, and a lovely daughter.
 urls:
     - text: github
       url: https://github.com/xyting
