@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('.nav > li').click(function () {
-		$(this).addClass('active');
-	});
+	$('li').click(function () {
+        $(this).siblings().removeClass('active').addClass('active');
+    });
 });
