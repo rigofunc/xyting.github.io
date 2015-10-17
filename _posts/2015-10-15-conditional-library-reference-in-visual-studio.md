@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-## Why have this case
-
+## Where is Case
 I recently ran into a situation where I needed to have a single project in Visual Studio to reference different platform DLL (e.g. x86, x64). 
 That's to say, if I build solution with x86 platform the project will reference the x86 dependency library; otherwise, reference the x64 lib.
+
 ![conditional library reference]({{ site.url }}/images/conditional-lib-ref.PNG)
 
 ## How to do it
