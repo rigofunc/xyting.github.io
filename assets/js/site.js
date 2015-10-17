@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	$('li').click(function () {
-        $(this).siblings().removeClass('active').addClass('active');
+        $(this).siblings().removeClass('active');
+		$(this).addClass('active');
     });
 });
