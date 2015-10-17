@@ -3,7 +3,7 @@ layout: default
 title: Host services in IIS rather than Widnows Services
 ---
 
-In some scenario, we need to periodally run a task, or some tasks need to be long running in background threads. To decouple it from main business,
+In some scenarios, we need to periodally run a task, or some tasks need to be long running in background threads. To decouple it from main business,
 we could isolate it as a servie, and then communication with it through some protocols, e.g. named pipe, net.tcp, TCP/IP, HTTP and so on. 
 The service can be hosted in **Windows Service**, but if we deal with clients with lots of security restrictions on their servers which makes running 
 a **Windows Service** difficalt or impossible.
