@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+Today, I found some codes was written a years agon, I'm surprising so that I write this for recording it.
+
+```C# 
+    public class A {
+        public A() {
+            var derivedProperties = this.GetType().GetProperties();
+            foreach (var prop in derivedProperties) {
+                var type = prop.PropertyType;
+                if (type.IsGenericType && type.GetGenericTypeDefinition()
+                        == typeof(IIter<>)) {
+                    var itemType = type.GetGenericArguments()[0];
+
+                    prop.SetValue(this, Activator.CreateInstance(typeof(InternalIter<>).MakeGenericType(itemType)));
+                }
+            }
+        }
+    }
+
+    public interface IIter<T> {
+        T Data { get; }
+    }
+
+    internal class InternalIter<T> : IIter<T> {
+        public T Data { get; set; }
+    }
+
+    public class B : A {
+        public IIter<string> Data { get; set; }
+    }
+
+    [TestClass]
+    public class UnitTest1 {
+        [TestMethod]
+        public void TestMethod1() {
+            var b = new B();
+            var type = b.Data.GetType();
+            Assert.AreEqual(typeof(InternalIter<string>), type);
+        }
+    }
+
+```
