@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Today, I found some codes was written a years agon, I'm surprising so that I write this for recording it.
+Today, I found some codes was written a year ago, I'm surprising so that I write this for recording it.
 
 ```C# 
     public class A {
