@@ -4,7 +4,7 @@ layout: default
 
 Today, I found some codes was written a year ago, I'm surprising so that I write this for recording it.
 
-```C# 
+```csharp 
     public class A {
         public A() {
             var derivedProperties = this.GetType().GetProperties();
