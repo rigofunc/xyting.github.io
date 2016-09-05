@@ -1,9 +1,9 @@
 name: rigofunc - xyting's blog
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-  highlighter: rouge
 paginate: 5
 github: https://www.github.com/xyting
 urls:
