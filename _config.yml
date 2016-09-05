@@ -1,12 +1,13 @@
-name: RigoFunc - xyting's blog
+name: rigofunc - xyting's blog
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  highlighter: rouge
 paginate: 5
 github: https://www.github.com/xyting
 urls:
     - text: github
       url: https://github.com/xyting
     - text: email
-      url: mailto:wo@xyting.org
+      url: mailto:rigofunc@outlook.com
