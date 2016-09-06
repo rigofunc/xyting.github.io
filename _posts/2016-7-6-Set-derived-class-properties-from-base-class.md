@@ -2,7 +2,8 @@
 layout: default
 ---
 
-Today, I found some codes was written a year ago, I'm surprising so that I write this for recording it.
+Today, I found some codes was written a year ago, that's written for my own ORM implementations. The surprising feature is set
+derived class properties from base class, this feature will be always used by some software architect.
 
 ```csharp 
     public class A {
