@@ -3,7 +3,7 @@ layout: default
 ---
 
 Today, I found some codes was written a year ago, that's written for my own ORM implementations. The surprising feature is set
-derived class properties from base class, this feature will be always used by some software architect.
+derived class properties from base class, this feature always be used by some software architect. The simplify code (demo) as following:
 
 ```csharp 
     public class A {
