@@ -1,5 +1,6 @@
 ---
 layout: default
+title: How to set IIS hosting environment in ASP.NET Core
 ---
 
 When running ASP.NET Core apps, the `WebHostBuilder` will automatically attempt to determine which 
