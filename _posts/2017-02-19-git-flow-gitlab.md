@@ -3,9 +3,7 @@ layout: default
 title: Git，Git Flow，GitLab使用指南
 ---
 
-# 导语
-
-我们花一点点时间，一次蹲坑的时间足矣，看看如何使用Git Flow进行高效开发，什么才是Git提交的正确姿势，怎样使用GitLab进行Code Review：
+高效利用一次蹲坑时间，看看如何使用Git Flow进行高效开发，什么才是Git提交的正确姿势，怎样使用GitLab进行Code Review：
 
 - 使用Git Flow高效开发；
 - Git提交正确姿势，Commit message编写指南；
@@ -74,7 +72,7 @@ Visual Studio有一个Git Flow插件[GitFlow.VS](http://blog.ehn.nu/2015/02/intr
 
 ![vsgitflow](/images/vs_git_flow_usage.png)
 
-**再次强调：** 我们需要一个工具帮我们自动化遵循规范，比如GitFlow插件。
+**再次强调：** 我们需要借助一个工具帮我们自动化遵循规范，比如GitFlow插件。
 
 # Git提交正确姿势：Commit message编写指南
 
