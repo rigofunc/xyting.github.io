@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Code Review Use GitLab/Git Flow
+title: Git，Git Flow，GitLab使用指南
 ---
 
 # 导语
@@ -16,7 +16,7 @@ title: Code Review Use GitLab/Git Flow
 在工作环境中，绕不开**效率**一词，由于任何一次版本迭代，几乎都是需要整个团队协作的，所以，**高效开发**不仅仅是个人效率问题，还涉及到整个团队的协作效率。个人开发，可以怎么顺手怎么搞，怎么开心怎么玩，但在团队里协作的时候，只一个人顺手开心是不够，还需要整个团队协作高效。提高效率，一般我们会这么搞：
 
 - 遵守行业内的最佳实践；
-- 使用工具自动遵循规范；
+- 借助工具自动遵循规范；
 
 ## 什么是Git Flow？
 
@@ -45,7 +45,7 @@ Git Flow是一个Git扩展集，按[Vincent Driessen的分支模型](http://nvie
 
     ![git-flow-hotfix](/images/git_flow_hotfix.png)
 
-## 使用工具自动遵循规范
+## 借助工具自动遵循规范
 
 Visual Studio有一个Git Flow插件[GitFlow.VS](http://blog.ehn.nu/2015/02/introducing-gitflow-for-visual-studio/), Sourcetree最新版本集成了Git Flow插件，这些插件的好处是最大化地简化了命令，只有**Start Feature**、**Finish Feature**、**Start Release**、**Finish Release**、**Start Hotfix**、**Finish Hotfix**几个操作，其他工作，Git Flow自动帮你完成：
 
@@ -74,7 +74,7 @@ Visual Studio有一个Git Flow插件[GitFlow.VS](http://blog.ehn.nu/2015/02/intr
 
 ![vsgitflow](/images/vs_git_flow_usage.png)
 
-**再次强调：** 我们需要一个工具帮我们自动化遵循规范，这就是GitFlow插件。
+**再次强调：** 我们需要一个工具帮我们自动化遵循规范，比如GitFlow插件。
 
 # Git提交正确姿势：Commit message编写指南
 
