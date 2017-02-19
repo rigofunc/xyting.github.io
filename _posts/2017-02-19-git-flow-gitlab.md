@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 使用Git Flow高效开发，使用GitLab Code Review
+title: Code Review Use GitLab/Git Flow
 ---
 
 # 导语
