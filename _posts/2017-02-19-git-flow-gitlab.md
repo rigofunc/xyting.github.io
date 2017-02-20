@@ -149,6 +149,6 @@ Code Review的工具很多，Facebook非常有名的Phabricator已经开源。�
 
 ![gitlab_new_pr](/images/gitlab_new_pr.png)
 
-一旦Merge Request创建成功之后，主Repo拥有Code Review权限的人就会收到通知，Code Review的时候， 打开**Open**的Merge Request，会看到Commits， Changes，打开Changes，可以提交自己的Review建议，被Review的人继续根据这些建议，在自己的Repo里修改，修改好之后提交，这是会在自己的Repo里及主Repo的**Open** Merge Request里看到更改，继续Review流程即可，知道Merge Request被合并，如下图：
+一旦Merge Request创建成功之后，主Repo拥有Code Review权限的人就会收到通知，Code Review的时候， 打开**Open**的Merge Request，会看到Commits， Changes，打开Changes，可以提交自己的Review建议，被Review的人继续根据这些建议，在自己的Repo里修改，修改好之后提交，这时候会在自己的Repo里及主Repo的**Open** Merge Request里看到更改，继续Review流程即可，直到Merge Request被合并，如下图：
 
 ![gitlab_pr_rv](/images/gitlab_pr_rv.png)
