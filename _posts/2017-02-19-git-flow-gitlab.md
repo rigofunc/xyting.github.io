@@ -90,7 +90,7 @@ Git 每次提交代码，都要写 Commit message（提交说明），否则就�
 
 每次提交，Commit message 都包括三个部分：Header，Body 和 Footer。
 
-```
+```xml
 <type>(<scope>): <subject>
 // 空一行
 <body>
