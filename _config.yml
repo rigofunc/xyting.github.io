@@ -3,6 +3,7 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
 paginate: 5
 github: https://www.github.com/xyting
 urls:
