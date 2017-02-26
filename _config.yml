@@ -1,6 +1,6 @@
 name: rigofunc - xyting's blog
-markdown: kramdown
 highlighter: rouge
+markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
