@@ -58,19 +58,19 @@ Visual Studio有一个Git Flow插件[GitFlow.VS](http://blog.ehn.nu/2015/02/intr
 
 通过Tools > Extensions and Updates > Online > Search gitflow 安装Git Flow插件
 
-![vsgitflow](/images/vs_git_flow.png)
+![vsgitflow](/images/vs_git_flow.PNG)
 
 装好插件之后，Team Explorer会多一个GitFlow
 
-![vsgitflow](/images/vs_te_git_flow.png)
+![vsgitflow](/images/vs_te_git_flow.PNG)
 
 点击GitFlow后，如果是首次点击，则会提示初始化操作
 
-![vsgitflow](/images/vs_git_flow_init.png)
+![vsgitflow](/images/vs_git_flow_init.PNG)
 
 初始化之后，每次进入GitFlow，则会根据状态提供创建或结束feature/release/hotfix分支
 
-![vsgitflow](/images/vs_git_flow_usage.png)
+![vsgitflow](/images/vs_git_flow_usage.PNG)
 
 **再次强调：** 我们需要借助一个工具帮我们自动化遵循规范，比如GitFlow插件。
 
@@ -143,12 +143,12 @@ Footer 部分只用于两种情况:
 
 Code Review的工具很多，Facebook非常有名的Phabricator已经开源。对于经常玩GitHub的人，应该很喜欢GitHub的PR功能，很多公司使用GitLab或者Gogs搭建自家的Git服务，GitLab的Merge Request功能同样可以用于团队内Code Review。如果团队内部需要强制进行Code Review, 那么拥有GitLab管理权限的开发人员，可以把Repo设置成只有develop和master分支，并把develop，master分支都保护起来。
 
-![gitlab_protect](/images/gitlab_protect.png)
+![gitlab_protect](/images/gitlab_protect.PNG)
 
 协作开发的同事，只能通过把Repo **FORK** 成自己的Repo，之后从自己Repo clone到本地，然后使用Git Flow开发，一旦开发到一个需要Review的点，通过**Merge Request**向主Repo请求合并
 
-![gitlab_new_pr](/images/gitlab_new_pr.png)
+![gitlab_new_pr](/images/gitlab_new_pr.PNG)
 
 一旦Merge Request创建成功之后，主Repo拥有Code Review权限的人就会收到通知，Code Review的时候， 打开**Open**的Merge Request，会看到Commits， Changes，打开Changes，可以提交自己的Review建议，被Review的人继续根据这些建议，在自己的Repo里修改，修改好之后提交，这时候会在自己的Repo里及主Repo的**Open** Merge Request里看到更改，继续Review流程即可，直到Merge Request被合并，如下图：
 
-![gitlab_pr_rv](/images/gitlab_pr_rv.png)
+![gitlab_pr_rv](/images/gitlab_pr_rv.PNG)
