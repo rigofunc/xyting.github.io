@@ -141,14 +141,72 @@ Footer 部分只用于两种情况:
 
 # 使用GitLab进行团队内Code Review
 
-Code Review的工具很多，Facebook非常有名的Phabricator已经开源。对于经常玩GitHub的人，应该很喜欢GitHub的PR功能，很多公司使用GitLab或者Gogs搭建自家的Git服务，GitLab的Merge Request功能同样可以用于团队内Code Review。如果团队内部需要强制进行Code Review, 那么拥有GitLab管理权限的开发人员，可以把Repo设置成只有develop和master分支，并把develop，master分支都保护起来。
+Code Review的工具很多，Facebook非常有名的Phabricator已经开源。对于经常玩GitHub的人，应该很喜欢GitHub的PR功能，很多公司使用GitLab或者Gogs搭建自家的Git服务，GitLab的Merge Request功能同样可以用于团队内Code Review。
+
+## Branches Protection Setting
+
+如果团队内部需要强制进行Code Review, 那么拥有GitLab管理权限的开发人员，可以把Repo设置成只有develop和master分支，并把develop，master分支都保护起来，不允许任何开发人员直接*push*到这些分支，开发人员只能把Repo **FORK**成自己的Repo。
+
+**Your project > Setting > Protected Branches**
 
 ![gitlab_protect](/images/gitlab_protect.PNG)
 
+## 创建Merge Request
 协作开发的同事，只能通过把Repo **FORK** 成自己的Repo，之后从自己Repo clone到本地，然后使用Git Flow开发，一旦开发到一个需要Review的点，通过**Merge Request**向主Repo请求合并
 
 ![gitlab_new_pr](/images/gitlab_new_pr.PNG)
 
-一旦Merge Request创建成功之后，主Repo拥有Code Review权限的人就会收到通知，Code Review的时候， 打开**Open**的Merge Request，会看到Commits， Changes，打开Changes，可以提交自己的Review建议，被Review的人继续根据这些建议，在自己的Repo里修改，修改好之后提交，这时候会在自己的Repo里及主Repo的**Open** Merge Request里看到更改，继续Review流程即可，直到Merge Request被合并，如下图：
+## Code Review
+一旦Merge Request创建成功之后，主Repo拥有Code Review权限的人就会收到通知，Code Review的时候， 打开**Open**的Merge Request，会看到Commits， Changes，打开Changes，可以提交自己的Review建议，被Review的人继续根据这些建议，在自己的Repo里修改，修改好之后提交，这时会在自己的Repo里及主Repo的**Open** Merge Request里看到相应更改，因此可以继续Review流程，直到Merge Request被合并，如下图：
 
 ![gitlab_pr_rv](/images/gitlab_pr_rv.PNG)
+
+## Syncing a FORK
+
+因为团队的Repo是多人协作开发的，也就是说，团队的主Repo会被多个开发人员Fork，当每个协作开发的开发人员对团队的主Repo请求Merge Request之后，负责进行Code Review的同事进行Review，完成代码Review之后会合并到主Repo。这时，每个Fork的Repo需要同主Repo进行同步才能拿到最新代码，具体操作步骤如下：
+
+1. 查看本地Repo是否设置了upstream；
+
+```cmd
+D:\repos\Apollo>git remote -v
+origin  http://git.code.oa.com/yingtingxu/Apollo.git (fetch)
+origin  http://git.code.oa.com/yingtingxu/Apollo.git (push)
+```
+
+2. 如果没有设置，则进行设置
+
+```cmd
+D:\repos\Apollo>git remote add upstream http://git.code.oa.com/ACD/Apollo.git
+
+D:\repos\Apollo>git remote -v
+origin  http://git.code.oa.com/yingtingxu/Apollo.git (fetch)
+origin  http://git.code.oa.com/yingtingxu/Apollo.git (push)
+upstream        http://git.code.oa.com/ACD/Apollo.git (fetch)
+upstream        http://git.code.oa.com/ACD/Apollo.git (push)
+```
+
+3. 获取主Repo的更新
+
+```cmd
+D:\repos\Apollo>git fetch upstream
+remote: Counting objects: 9, done
+remote: Finding sources: 100% (5/5)
+remote: Getting sizes: 100% (6/6)
+remote: Total 5 (delta 0), reused 5 (delta 0)
+Unpacking objects: 100% (5/5), done.
+From http://git.code.oa.com/ACD/Apollo
+ * [new branch]      develop    -> upstream/develop
+ * [new branch]      master     -> upstream/master
+```
+
+4. 合并更新，以合并develop为例
+
+```cmd
+D:\repos\Apollo>git checkout develop
+
+D:\repos\Apollo>git merge upstream/develop
+Updating e0d7ffe..2b7875f
+Fast-forward
+ version.props | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
