@@ -165,7 +165,7 @@ Code Review的工具很多，Facebook非常有名的Phabricator已经开源。�
 
 因为团队的Repo是多人协作开发的，也就是说，团队的主Repo会被多个开发人员Fork，当每个协作开发的开发人员对团队的主Repo请求Merge Request之后，负责进行Code Review的同事进行Review，完成代码Review之后会合并到主Repo。这时，每个Fork的Repo需要同主Repo进行同步才能拿到最新代码，具体操作步骤如下：
 
-1. 查看本地Repo是否设置了upstream；
+### 查看本地Repo是否设置了upstream；
 
 ```cmd
 D:\repos\Apollo>git remote -v
@@ -173,7 +173,7 @@ origin  http://git.code.oa.com/yingtingxu/Apollo.git (fetch)
 origin  http://git.code.oa.com/yingtingxu/Apollo.git (push)
 ```
 
-2. 如果没有设置，则进行设置
+### 如果没有设置，则进行设置
 
 ```cmd
 D:\repos\Apollo>git remote add upstream http://git.code.oa.com/ACD/Apollo.git
@@ -185,7 +185,7 @@ upstream        http://git.code.oa.com/ACD/Apollo.git (fetch)
 upstream        http://git.code.oa.com/ACD/Apollo.git (push)
 ```
 
-3. 获取主Repo的更新
+### 获取主Repo的更新
 
 ```cmd
 D:\repos\Apollo>git fetch upstream
@@ -199,7 +199,7 @@ From http://git.code.oa.com/ACD/Apollo
  * [new branch]      master     -> upstream/master
 ```
 
-4. 合并更新，以合并develop为例
+### 合并更新，以合并develop为例
 
 ```cmd
 D:\repos\Apollo>git checkout develop
