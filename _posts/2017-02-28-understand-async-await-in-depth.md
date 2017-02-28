@@ -252,7 +252,9 @@ public interface ICriticalNotifyCompletion : INotifyCompletion
 }
 ```
 
-因此，我们可以实现自己的**awaitable**和**awaiter**对象：
+## 实现自己的**awaitable**和**awaiter**对象
+
+我们费了那么大的劲，终于弄清楚了sync/Await背后到底发上了什么，我们做到了知其然知其所以然，因此，我们可以实现自己的**awaitable**和**awaiter**对象：
 
 ```csharp
 namespace AsyncAwaitInDepth
@@ -302,79 +304,6 @@ namespace AsyncAwaitInDepth
 }
 ```
 
-被C#编译器重写之后的结果：
+最后，借用《C# in Depth》作者Job Skeet的一句话与大家共勉： 
 
-```csharp
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-    }
-
-    [AsyncStateMachine(typeof(<MyAwaitable>d__1)), DebuggerStepThrough]
-    private static void MyAwaitable()
-    {
-        <MyAwaitable>d__1 stateMachine = new <MyAwaitable>d__1 {
-            <>t__builder = AsyncVoidMethodBuilder.Create(),
-            <>1__state = -1
-        };
-        stateMachine.<>t__builder.Start<<MyAwaitable>d__1>(ref stateMachine);
-    }
-
-    [CompilerGenerated]
-    private sealed class <MyAwaitable>d__1 : IAsyncStateMachine
-    {
-        // Fields
-        public int <>1__state;
-        public AsyncVoidMethodBuilder <>t__builder;
-        private object <>u__1;
-        private Awaitable<int> <awaitable>5__1;
-
-        // Methods
-        private void MoveNext()
-        {
-            int num = this.<>1__state;
-            try
-            {
-                Awaiter<int> awaiter;
-                if (num != 0)
-                {
-                    Console.WriteLine("before awaiting");
-                    this.<awaitable>5__1 = new Awaitable<int>();
-                    awaiter = this.<awaitable>5__1.GetAwaiter();
-                    if (!awaiter.IsCompleted)
-                    {
-                        this.<>1__state = num = 0;
-                        this.<>u__1 = awaiter;
-                        Program.<MyAwaitable>d__1 stateMachine = this;
-                        this.<>t__builder.AwaitOnCompleted<Awaiter<int>, Program.<MyAwaitable>d__1>(ref awaiter, ref stateMachine);
-                        return;
-                    }
-                }
-                else
-                {
-                    awaiter = (Awaiter<int>) this.<>u__1;
-                    this.<>u__1 = null;
-                    this.<>1__state = num = -1;
-                }
-                awaiter.GetResult();
-                awaiter = null;
-                Console.WriteLine("after awaiting");
-            }
-            catch (Exception exception)
-            {
-                this.<>1__state = -2;
-                this.<>t__builder.SetException(exception);
-                return;
-            }
-            this.<>1__state = -2;
-            this.<>t__builder.SetResult();
-        }
-
-        [DebuggerHidden]
-        private void SetStateMachine(IAsyncStateMachine stateMachine)
-        {
-        }
-    }
-}
-```
+> I like knowing how a feature works before I go too far using it
