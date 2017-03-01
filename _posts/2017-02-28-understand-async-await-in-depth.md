@@ -26,9 +26,9 @@ namespace AsyncAwaitInDepth
 
 编译上面的C#代码，会出现`CS1983 The return type of an async method must be void, Task or Task<T>`错误，即编译器告诉我们，异步方法仅限于三个不同的返回类型︰
 
-- void
-- Task
-- Task<T>
+- `void`
+- `Task`
+- `Task<T>`
 
 再修改一下代码，让编译器编译通过：
 
