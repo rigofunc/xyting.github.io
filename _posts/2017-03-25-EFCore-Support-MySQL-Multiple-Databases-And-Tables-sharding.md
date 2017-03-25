@@ -385,5 +385,5 @@ namespace QuickStart.Controllers
 ```
 
 
-以下是我自己的定位（谁不装逼呢）：
-> I'm a software architect, particularly love .NET Core, but I also embrace all the new stuff.
+ABOUT ME：
+> I'm a software architect, particularly love .NET Core, but I also embrace all the new stuff. I'm on GitHub with [xyting](https://github.com/xyting), and my packages publish on NuGet with [rigofunc](https://www.nuget.org/packages?q=rigofunc)
