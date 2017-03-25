@@ -225,7 +225,7 @@ public interface IUnitOfWork : IDisposable
     void ChangeDatabase(string database);
 ```
 
-怎么实现这两个方法，就需要一定的技术功底了，我以前在一家创业公司的时候，因为看不惯架构师自以为是的样子，自己动手写了一个轻量级的ORM框架，如果以后有时间，我打算写一篇《如何基于Dapper实现一个轻量级的ORM框架》的文章。ORM框架背后的动机很单纯，就是*数据库*与*Domain*之间的一种双向映射，真正把这种单纯的动机搞复杂是的那些性能优化，各种缓存实现。而从Domain到数据库这一单方向上的映射，在.NET领域借助了一种**代码即数据**的思想，再细化的C#语言**代码即数据**就是表达式树。所以，我们有理由相信：SQL是根据表达式树生成的。现在我们已经找准了方向，那么我们看看`EntityFrameworkCore`在什么地方生成表名的，也就是说，我们只需要修改一下生成表名的代码，就可以做到动态生成`database`.`table` SQL。`EntityFrameworkCore`是通过`TableExpression`来生成表名的：
+怎么实现这两个方法，就需要一定的技术功底了，我以前在一家创业公司的时候，因为看不惯架构师自以为是的样子，自己动手写了一个轻量级的ORM框架，如果以后有时间，我打算写一篇《如何基于Dapper实现一个轻量级的ORM框架》的文章。ORM框架背后的动机很单纯，就是*数据库*与*Domain*之间的一种双向映射，真正把这种单纯的动机搞复杂是的那些性能优化，各种缓存实现。而从Domain到数据库这一单方向上的映射，在.NET领域借助了一种**代码即数据**的思想，再细化到C#语言**代码即数据**就是表达式树。所以，我们有理由相信：SQL是根据表达式树生成的。现在我们已经找准了方向，那么我们看看`EntityFrameworkCore`在什么地方生成表名的，也就是说，我们只需要修改一下生成表名的代码，就可以做到动态生成`database`.`table` SQL。`EntityFrameworkCore`是通过`TableExpression`来生成表名的：
 
 ```csharp
 public class TableExpression
@@ -384,5 +384,6 @@ namespace QuickStart.Controllers
       ORDER BY `u`.`Fid`
 ```
 
+
 以下是我自己的定位（谁不装逼呢）：
-> I'm a software architecter, particularly love .NET Core, but I also embrace all the new stuff.
+> I'm a software architect, particularly love .NET Core, but I also embrace all the new stuff.
