@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 使用EntityFrameworkCore实现Repository<TEntity>, UnitOfWork<TContext>，支持MySQL分库分表
+title: 使用EntityFrameworkCore实现Repository&lt;TEntity&gt;, UnitOfWork&lt;TContext&gt;，支持MySQL分库分表
 ---
 
 昨天（星期五）下班，19：00左右回到家，洗个澡，然后20：30左右开始写代码，写完代码之后，上床看了《生活大爆炸10季》17、18两集，发现没有更新到19集，瞄了一眼手机，竟然已经是凌晨02：00多了，关掉电视睡觉，10：30左右被老婆电话吵醒，洗漱完毕，去麦当劳吃了一个早餐，然后屁颠屁颠地坐地铁到很远的地方去爬山。爬山回来之后，闲来无事，写篇文章记录一下昨晚所花的几个小时干的事情——使用EntityFrameworkCore实现`Repository<TEntity>`, `UnitOfWork<TContext>`，支持MySQL分库分表。
@@ -64,13 +64,6 @@ public interface IRepository<TEntity> where TEntity : class
     /// Finds an entity with the given primary key values. If found, is attached to the context and returned. If no entity is found, then null is returned.
     /// </summary>
     /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
-    /// <returns>A <see cref="Task{TEntity}"/> that represents the asynchronous find operation. The task result contains the found entity or null.</returns>
-    Task<TEntity> FindAsync(params object[] keyValues);
-
-    /// <summary>
-    /// Finds an entity with the given primary key values. If found, is attached to the context and returned. If no entity is found, then null is returned.
-    /// </summary>
-    /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
     /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
     /// <returns>A <see cref="Task{TEntity}"/> that represents the asynchronous find operation. The task result contains the found entity or null.</returns>
     Task<TEntity> FindAsync(object[] keyValues, CancellationToken cancellationToken);
@@ -82,18 +75,6 @@ public interface IRepository<TEntity> where TEntity : class
     void Insert(TEntity entity);
 
     /// <summary>
-    /// Inserts a range of entities synchronously.
-    /// </summary>
-    /// <param name="entities">The entities to insert.</param>
-    void Insert(params TEntity[] entities);
-
-    /// <summary>
-    /// Inserts a range of entities synchronously.
-    /// </summary>
-    /// <param name="entities">The entities to insert.</param>
-    void Insert(IEnumerable<TEntity> entities);
-
-    /// <summary>
     /// Inserts a new entity asynchronously.
     /// </summary>
     /// <param name="entity">The entity to insert.</param>
@@ -102,61 +83,16 @@ public interface IRepository<TEntity> where TEntity : class
     Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
-    /// Inserts a range of entities asynchronously.
-    /// </summary>
-    /// <param name="entities">The entities to insert.</param>
-    /// <returns>A <see cref="Task"/> that represents the asynchronous insert operation.</returns>
-    Task InsertAsync(params TEntity[] entities);
-
-    /// <summary>
-    /// Inserts a range of entities asynchronously.
-    /// </summary>
-    /// <param name="entities">The entities to insert.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
-    /// <returns>A <see cref="Task"/> that represents the asynchronous insert operation.</returns>
-    Task InsertAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
-
-    /// <summary>
     /// Updates the specified entity.
     /// </summary>
     /// <param name="entity">The entity.</param>
     void Update(TEntity entity);
 
     /// <summary>
-    /// Updates the specified entities.
-    /// </summary>
-    /// <param name="entities">The entities.</param>
-    void Update(params TEntity[] entities);
-
-    /// <summary>
-    /// Updates the specified entities.
-    /// </summary>
-    /// <param name="entities">The entities.</param>
-    void Update(IEnumerable<TEntity> entities);
-
-    /// <summary>
     /// Deletes the entity by the specified primary key.
     /// </summary>
     /// <param name="id">The primary key value.</param>
     void Delete(object id);
-
-    /// <summary>
-    /// Deletes the specified entity.
-    /// </summary>
-    /// <param name="entity">The entity to delete.</param>
-    void Delete(TEntity entity);
-
-    /// <summary>
-    /// Deletes the specified entities.
-    /// </summary>
-    /// <param name="entities">The entities.</param>
-    void Delete(params TEntity[] entities);
-
-    /// <summary>
-    /// Deletes the specified entities.
-    /// </summary>
-    /// <param name="entities">The entities.</param>
-    void Delete(IEnumerable<TEntity> entities);
 }
 
 /// <summary>
@@ -207,22 +143,22 @@ public interface IUnitOfWork : IDisposable
 很多人都自己动手实现过`Repository`和`UnitOfWork`，虽然各自实现不尽相同，但是其实现本身并没有难度，但在这里，我们需要特别关注两个方法：`void ChangeTable(string table)`和`void ChangeDatabase(string database)`
 
 ```csharp
-    /// <summary>
-    /// Changes the table name. This require the tables in the same database.
-    /// </summary>
-    /// <param name="table"></param>
-    /// <remarks>
-    /// This only been used for supporting multiple tables in the same model. This require the tables in the same database.
-    /// </remarks>
-    void ChangeTable(string table);
-    /// <summary>
-    /// Changes the database name. This require the databases in the same machine.
-    /// </summary>
-    /// <param name="database">The database name.</param>
-    /// <remarks>
-    /// This only been used for supporting multiple databases in the same model. This require the databases in the same machine.
-    /// </remarks>
-    void ChangeDatabase(string database);
+/// <summary>
+/// Changes the table name. This require the tables in the same database.
+/// </summary>
+/// <param name="table"></param>
+/// <remarks>
+/// This only been used for supporting multiple tables in the same model. This require the tables in the same database.
+/// </remarks>
+void ChangeTable(string table);
+/// <summary>
+/// Changes the database name. This require the databases in the same machine.
+/// </summary>
+/// <param name="database">The database name.</param>
+/// <remarks>
+/// This only been used for supporting multiple databases in the same model. This require the databases in the same machine.
+/// </remarks>
+void ChangeDatabase(string database);
 ```
 
 怎么实现这两个方法，就需要一定的技术功底了，我以前在一家创业公司的时候，因为看不惯架构师自以为是的样子，自己动手写了一个轻量级的ORM框架，如果以后有时间，我打算写一篇《如何基于Dapper实现一个轻量级的ORM框架》的文章。ORM框架背后的动机很单纯，就是*数据库*与*Domain*之间的一种双向映射，真正把这种单纯的动机搞复杂是的那些性能优化，各种缓存实现。而从Domain到数据库这一单方向上的映射，在.NET领域借助了一种**代码即数据**的思想，再细化到C#语言**代码即数据**就是表达式树。所以，我们有理由相信：SQL是根据表达式树生成的。现在我们已经找准了方向，那么我们看看`EntityFrameworkCore`在什么地方生成表名的，也就是说，我们只需要修改一下生成表名的代码，就可以做到动态生成`database`.`table` SQL。`EntityFrameworkCore`是通过`TableExpression`来生成表名的：
@@ -358,32 +294,30 @@ namespace QuickStart.Controllers
 以下是生成的SQL：
 
 ```sql
-      Executed DbCommand [Parameters=[@p2='?', @p4='?' (Size = 8000), @p6='?' (Size = 8000)], CommandType='Text', CommandTimeout='0']
-      INSERT INTO `rigofunc_2017`.`t_user_201703` (`Fis_deleted`, `Fpassword`, `Fname`)
-      VALUES (@p2, @p4, @p6);
-      SELECT LAST_INSERT_ID();
-
-      Executed DbCommand [Parameters=[@p10='?' (Size = 8000), @p12='?', @p14='?'], CommandType='Text', CommandTimeout='0']
-      INSERT INTO `rigofunc_2017`.`t_post_201703` (`Fcontent`, `Fis_deleted`, `Fuser_id`)
-      VALUES (@p10, @p12, @p14);
-      SELECT LAST_INSERT_ID();
-
-      Executed DbCommand [Parameters=[@p0='?', @p3='?', @p4='?' (Size = 8000)], CommandType='Text', CommandTimeout='0']
-      UPDATE `rigofunc_2017`.`t_user_201703` SET `Fpassword` = @p4
-      WHERE `Fid` = @p0 AND `Fis_deleted` = @p3;
-      SELECT ROW_COUNT();
-
-      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='0']
-      SELECT `u`.`Fid`, `u`.`Fis_deleted`, `u`.`Fpassword`, `u`.`Fname`
-      FROM `rigofunc_2017`.`t_user_201703` AS `u`
-      ORDER BY `u`.`Fid`
-
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='0']
-      SELECT `u`.`Fid`, `u`.`Fis_deleted`, `u`.`Fpassword`, `u`.`Fname`
-      FROM `rigofunc_2018`.`t_user_201703` AS `u`
-      ORDER BY `u`.`Fid`
+Executed DbCommand [Parameters=[@p2='?', @p4='?' (Size = 8000), @p6='?' (Size = 8000)], CommandType='Text', CommandTimeout='0']
+INSERT INTO `rigofunc_2017`.`t_user_201703` (`Fis_deleted`, `Fpassword`, `Fname`)
+VALUES (@p2, @p4, @p6);
+SELECT LAST_INSERT_ID()
+Executed DbCommand [Parameters=[@p10='?' (Size = 8000), @p12='?', @p14='?'], CommandType='Text', CommandTimeout='0']
+INSERT INTO `rigofunc_2017`.`t_post_201703` (`Fcontent`, `Fis_deleted`, `Fuser_id`)
+VALUES (@p10, @p12, @p14);
+SELECT LAST_INSERT_ID()
+Executed DbCommand [Parameters=[@p0='?', @p3='?', @p4='?' (Size = 8000)], CommandType='Text', CommandTimeout='0']
+UPDATE `rigofunc_2017`.`t_user_201703` SET `Fpassword` = @p4
+WHERE `Fid` = @p0 AND `Fis_deleted` = @p3;
+SELECT ROW_COUNT()
+Executed DbCommand [Parameters=[], CommandType='Text', CommandTimeout='0']
+SELECT `u`.`Fid`, `u`.`Fis_deleted`, `u`.`Fpassword`, `u`.`Fname`
+FROM `rigofunc_2017`.`t_user_201703` AS `u`
+ORDER BY `u`.`Fid
+Executed DbCommand [Parameters=[], CommandType='Text', CommandTimeout='0']
+SELECT `u`.`Fid`, `u`.`Fis_deleted`, `u`.`Fpassword`, `u`.`Fname`
+FROM `rigofunc_2018`.`t_user_201703` AS `u`
+ORDER BY `u`.`Fid`
 ```
 
+以上代码，本身做了简化，同时也采用了最小改动的实现，所以比较low，但是提供了最基本的实现思路，感兴趣的同学可以自己再从`EntityFrameworkCore`内部改改，我之后会用一些时间实现一个高级一点的版本，然后放到我的GitHub [UnitOfWork](https://github.com/Arch/UnitOfWork).
 
 ABOUT ME：
-> I'm a software architect, particularly love .NET Core, but I also embrace all the new stuff. I'm on GitHub with [xyting](https://github.com/xyting), and my packages publish on NuGet with [rigofunc](https://www.nuget.org/packages?q=rigofunc)
+
+I'm a software architect, particularly love .NET Core, but I also embrace all the new stuff. I'm on GitHub with [xyting](https://github.com/xyting), and my packages publish on NuGet with [rigofunc](https://www.nuget.org/packages?q=rigofunc)
