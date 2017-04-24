@@ -15,7 +15,11 @@ layout: default
 
 要逆向工程数据库，需要定义一个能表示数据库的数据结构：
 
+### DatabaseModel.cs
 <script src="https://gist.github.com/xyting/6b1d8472d193b1668c9a0dfe5f30c9b1.js"></script>
+
+### TableModel.cs
+<script src="https://gist.github.com/xyting/ce9804ba0124ca5ad40854f3c7df8331.js"></script>
 
 ## IDatabaseModelFactory
 
