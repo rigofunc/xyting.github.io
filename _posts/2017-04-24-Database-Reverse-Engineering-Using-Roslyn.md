@@ -8,7 +8,7 @@ layout: default
 2. 使用Roslyn实现一个符合团队规则的Code Fix工具：对于Code Review工具检测出来的问题，最简单粗暴的方式是直接无法提交代码进行人工Code Review，但是这不应该一个团队的水平，更好的办法是自动修复掉这些问题；
 3. 使用Roslyn从数据库生成Code First代码：任何公司、任何团队都有自己的一套数据库标准，有些团队的标准可能无法使用类似于EF的Code First，然后通过Migration方式创建和更新数据库的。最主要的一点是，很多老系统在做重构的时候，数据库本身是不能动的（华丽的表面背后总隐藏不少肮脏的东西），这个时候，通过数据库来生成符合C# Convention/Idioms的POCO代码将会减少不少工作量。
 
-# Database Reverse Engineering
+# 使用Roslyn逆向工厂数据库
 1.、2.代码量太大，一篇文章很难分享，所以本篇文章，只跟大家分享一下如何使用Roslyn从数据库生成Code First代码。
 
 ## 数据库建模
@@ -31,14 +31,14 @@ layout: default
 <script src="https://gist.github.com/xyting/db175aec0927deac68025f131d1a8829.js"></script>
 
 ## 从数据库模型生成代码
-我们已经有了逆向数据库的通用数据结构，接下来就可以通过Vistor模式不断地Visitor这个数据结构就可以生成Code First POCO代码，在这之前，为了屏蔽不同实现，还是抽象一个`ICodeGenerator.cs`
+我们已经有了逆向数据库的通用数据结构，接下来就可以通过Vistor模式不断地Visit这个数据结构就可以生成Code First POCO代码，但为了屏蔽不同实现，还是抽象一个`ICodeGenerator.cs`
 
 ### ICodeGenerator.cs
 <script src="https://gist.github.com/xyting/34a8beae25784db7ad5e3971693f1217.js"></script>
 
 ## 针对MySql的具体实现
 
-我已经提供了MySQL的全部实现，代码开源在[CodeRobot](https://github.com/Arch/CodeRobot)，目前我并没有提交所有的代码，为了测试大家是否真的喜欢我写的文章，麻烦各位移步到[CodeRobot](https://github.com/Arch/CodeRobot)进行`Star`，当`Star`超过30时，我提交所有的代码。由于代码量不适合全部Blog，所以`MySqlCodeFirstGenerator.cs`只提供了POCO类的生产，EF Core的DbContext已经Mapping代码没有放上来（想看所有代码，前往我的GitHub Star）。
+我已经提供了MySQL的全部实现，代码开源在[CodeRobot](https://github.com/Arch/CodeRobot)，但目前并没有提交所有的代码，为了测试大家是否真的喜欢我写的文章，麻烦各位移步到[CodeRobot](https://github.com/Arch/CodeRobot)进行`Star`，当`Star`超过30时，我提交所有的代码。由于代码量不适合全部Blog，所以`MySqlCodeFirstGenerator.cs`只提供了POCO类的生产，EF Core的DbContext以及Entity的Mapping代码没有放上来（想看所有代码，前往我的GitHub Star, 当`Star`超过30时，我提交所有的代码）。
 
 ###  MySqlCodeFirstGenerator.cs
 <script src="https://gist.github.com/xyting/c01c50bfa915ad77bfb3df182e1f6eae.js"></script>
