@@ -25,7 +25,7 @@ layout: default
 <script src="https://gist.github.com/xyting/4d3d407e7b40b9fecf0b0f1231b58ded.js"></script>
 
 ## 数据库模型创建工厂
-为了屏蔽数据库间的差异，我们提供一个`IDatabaseModelFactory.cs`
+为了屏蔽数据库间的差异，需要提供一个`IDatabaseModelFactory.cs`
 
 ### IDatabaseModelFactory.cs
 <script src="https://gist.github.com/xyting/db175aec0927deac68025f131d1a8829.js"></script>
@@ -38,7 +38,7 @@ layout: default
 
 ## 针对MySql的具体实现
 
-我已经提供了MySQL的全部实现，可以从`结果展示`看到运行结果，所有具体实现代码我开源在[CodeRobot](https://github.com/Arch/CodeRobot)，目前我并没有提交所有的代码，为了测试大家是否真的喜欢我写的文章，大家可以前往[CodeRobot](https://github.com/Arch/CodeRobot)进行`Star`，当`Star`超过30时，我提交所有的代码。由于代码量不适合全部Blog，所以`MySqlCodeFirstGenerator.cs`只提供了POCO类的生产，EF Core的DbContext已经Mapping代码没有放上来（想看所有代码，前往我的GitHub Star）。
+我已经提供了MySQL的全部实现，代码开源在[CodeRobot](https://github.com/Arch/CodeRobot)，目前我并没有提交所有的代码，为了测试大家是否真的喜欢我写的文章，麻烦各位移步到[CodeRobot](https://github.com/Arch/CodeRobot)进行`Star`，当`Star`超过30时，我提交所有的代码。由于代码量不适合全部Blog，所以`MySqlCodeFirstGenerator.cs`只提供了POCO类的生产，EF Core的DbContext已经Mapping代码没有放上来（想看所有代码，前往我的GitHub Star）。
 
 ###  MySqlCodeFirstGenerator.cs
 <script src="https://gist.github.com/xyting/c01c50bfa915ad77bfb3df182e1f6eae.js"></script>
