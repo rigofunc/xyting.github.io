@@ -14,27 +14,32 @@
   <link href="{{ site.url }}/assets/css/monokai.css" rel="stylesheet">
 </head>
 
-<body
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+<body <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
         aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <img class="img-circle" src="{{ site.url }}/images/logo.PNG" width="50" height="50">
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/">HOME</a></li>
-          <li><a href="/about.html">ABOUT</a></li>
-          <li><a href="https://github.com/xyting/">VIEW ON GITHUB</a></li>
-        </ul>
-      </div>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="img-circle" src="{{ site.url }}/images/logo.PNG" width="50" height="50">
     </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/">HOME</a>
+        </li>
+        <li>
+          <a href="/about.html">ABOUT</a>
+        </li>
+        <li>
+          <a href="https://github.com/xyting/">VIEW ON GITHUB</a>
+        </li>
+      </ul>
+    </div>
+  </div>
   </nav>
 
   <div class="container">
@@ -48,7 +53,11 @@
             ABOUT
           </div>
           <div class="panel-body">
-            <p>I'm a C++/.NET Core developer, but I also embrace all the new stuff. I'm working at Tencent. My family live in Hangzhou, Zhejiang, China. Maybe the difference with other programmers is I already married, and have a lovely daughter. (^&lt;&gt;^)</p>
+            <p>I'm a C++/.NET Core developer, but I also embrace all the new stuff.</p>
+
+            <p>I'm working at Tencent. My family live in Hangzhou, Zhejiang, China. Maybe the difference with other programmers
+              is I already married, and have a lovely daughter. (^&lt;&gt;^)</p>
+              
             <p>A man like me, is unique in the world of existence, no matter where you go, there belonging to my stage. Like
               desert gold, light can not hide forever! Especially my messy hair, melancholy eyes, sigh of stubble, handsome
               face, are deeply addicted whom even I.</p>
@@ -61,7 +70,9 @@
           <div class="panel-body">
             <ul class="nav nav-pills nav-justified">
               {% for i in site.urls %}
-              <li role="presentation"><a href="{{ i.url }}">{{ i.text }}</a></li>
+              <li role="presentation">
+                <a href="{{ i.url }}">{{ i.text }}</a>
+              </li>
               {% endfor %}
             </ul>
           </div>
